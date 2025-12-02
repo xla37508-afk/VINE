@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "es2022",
+    "target": "es2022",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    
+    // Bổ sung 'dom' để resolve Request, Response, console
+    "lib": ["es2022", "dom"], 
+    
+    // Tham chiếu đến kiểu Deno (cần cài đặt @types/deno)
+    "types": ["@types/deno"], 
+    
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
+}

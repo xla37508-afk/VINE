@@ -188,7 +188,7 @@ const UsersManagement = () => {
                           <Button
                             size="sm"
                             onClick={() => handleApproveUser(user.id)}
-                            className="bg-success hover:bg-success/90"
+                            className="bg-green-600 hover:bg-green-700 text-white"
                           >
                             <Check className="h-4 w-4 mr-1" />
                             Approve
