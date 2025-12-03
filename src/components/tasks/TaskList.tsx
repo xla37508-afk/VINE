@@ -151,6 +151,7 @@ const TaskList = ({ role }: { role: UserRole }) => {
               <TableHead>Task</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Priority</TableHead>
+              <TableHead>Reporter</TableHead>
               <TableHead>Assignee</TableHead>
               <TableHead>Deadline</TableHead>
               <TableHead>Created</TableHead>
