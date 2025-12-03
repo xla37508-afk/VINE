@@ -250,10 +250,12 @@ vine-crm/
 ### **Supabase Configuration**
 
 1. Create a new project on [Supabase](https://supabase.com)
-2. Run migrations from `supabase/migrations/`
-3. Enable Row-Level Security on all tables
-4. Configure authentication providers
-5. Set up storage buckets for avatars and attachments
+2. Follow the [Database Setup Guide](./supabase.setup.md):
+   - Execute SQL schema in Supabase SQL Editor
+   - All RLS policies are automatically configured
+   - Create storage buckets (detailed instructions in setup guide)
+3. Create first admin user via signup and approve them
+4. (Optional) Deploy delete-user Edge Function for admin user management
 
 ### **Development Tools**
 
