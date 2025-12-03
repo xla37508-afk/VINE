@@ -62,10 +62,6 @@ const MyBookings = () => {
     return <div className="text-muted-foreground">Loading your bookings...</div>;
   }
 
-  if (loading) {
-    return <div className="text-muted-foreground">Loading your bookings...</div>;
-  }
-
   if (bookings.length === 0) {
     return <div className="text-muted-foreground text-center py-8">No bookings yet</div>;
   }
