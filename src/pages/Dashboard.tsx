@@ -176,7 +176,7 @@ const Dashboard = () => {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className={`grid gap-6 ${role === 'admin' ? 'md:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-4'}`}>
           <Card className="shadow-medium transition-smooth hover:shadow-strong overflow-hidden relative">
             <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-primary opacity-10 rounded-full -mr-8 -mt-8" />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -213,39 +213,43 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card className="shadow-medium transition-smooth hover:shadow-strong overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-warning/20 to-warning/5 rounded-full -mr-8 -mt-8" />
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Attendance</CardTitle>
-              <div className="p-2 bg-warning/10 rounded-lg">
-                <Clock className="h-4 w-4 text-warning" />
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="mt-1">
-                {stats.todayAttendance ? (
-                  <Badge className="bg-success text-success-foreground">Checked In</Badge>
-                ) : (
-                  <Badge variant="outline" className="border-muted-foreground/50">Not Checked In</Badge>
-                )}
-              </div>
-              <p className="text-xs text-muted-foreground mt-3">Today's status</p>
-            </CardContent>
-          </Card>
+          {role !== 'admin' && (
+            <>
+              <Card className="shadow-medium transition-smooth hover:shadow-strong overflow-hidden relative">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-warning/20 to-warning/5 rounded-full -mr-8 -mt-8" />
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Attendance</CardTitle>
+                  <div className="p-2 bg-warning/10 rounded-lg">
+                    <Clock className="h-4 w-4 text-warning" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="mt-1">
+                    {stats.todayAttendance ? (
+                      <Badge className="bg-success text-success-foreground">Checked In</Badge>
+                    ) : (
+                      <Badge variant="outline" className="border-muted-foreground/50">Not Checked In</Badge>
+                    )}
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-3">Today's status</p>
+                </CardContent>
+              </Card>
 
-          <Card className="shadow-medium transition-smooth hover:shadow-strong overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-20 h-20 bg-primary/10 opacity-50 rounded-full -mr-8 -mt-8" />
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Leave Balance</CardTitle>
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <Calendar className="h-4 w-4 text-primary" />
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold">{stats.leaveBalance}</div>
-              <p className="text-xs text-muted-foreground mt-1">days remaining</p>
-            </CardContent>
-          </Card>
+              <Card className="shadow-medium transition-smooth hover:shadow-strong overflow-hidden relative">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/10 opacity-50 rounded-full -mr-8 -mt-8" />
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Leave Balance</CardTitle>
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <Calendar className="h-4 w-4 text-primary" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold">{stats.leaveBalance}</div>
+                  <p className="text-xs text-muted-foreground mt-1">days remaining</p>
+                </CardContent>
+              </Card>
+            </>
+          )}
         </div>
 
         {/* Quick Actions */}
