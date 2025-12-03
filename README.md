@@ -28,6 +28,7 @@
 - [Role-Based Access](#-role-based-access)
 - [Getting Started](#-getting-started)
 - [Environment Setup](#-environment-setup)
+- [Documentation](#-documentation)
 - [Development](#-development)
 - [Deployment](#-deployment)
 - [Contributing](#-contributing)
