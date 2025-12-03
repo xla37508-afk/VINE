@@ -228,10 +228,10 @@ vine-crm/
    VITE_SUPABASE_PROJECT_ID=your_project_id
    ```
 
-4. **Run database migrations**
-   ```bash
-   npx supabase db push
-   ```
+4. **Set up database schema** (see [Database Setup Guide](./supabase.setup.md))
+   - Open Supabase SQL Editor
+   - Copy and run all SQL from `supabase.setup.md`
+   - Create storage buckets (avatars, documents) via Supabase Dashboard
 
 5. **Start development server**
    ```bash
