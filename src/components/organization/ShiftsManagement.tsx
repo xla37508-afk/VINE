@@ -400,7 +400,7 @@ const ShiftsManagement = () => {
           <DialogFooter>
             <Button variant="outline" onClick={() => setEditOpen(false)}>Cancel</Button>
             <Button onClick={handleUpdate} disabled={submitting}>
-              {submitting && <Loader2 className "mr-2 h-4 w-4 animate-spin" />}
+              {submitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               Update Shift
             </Button>
           </DialogFooter>
