@@ -358,15 +358,6 @@ const RoomManagement = () => {
                 </Button>
                 <Button
                   size="sm"
-                  variant="outline"
-                  onClick={() => openParticipantsDialog(room)}
-                  className="flex-1"
-                >
-                  <Users className="h-4 w-4 mr-1" />
-                  Manage
-                </Button>
-                <Button
-                  size="sm"
                   variant="destructive"
                   onClick={() => {
                     setSelectedRoom(room);
