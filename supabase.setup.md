@@ -270,6 +270,7 @@ ALTER TABLE public.meeting_rooms ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.room_bookings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.leave_types ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.leave_requests ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.notifications ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.audit_logs ENABLE ROW LEVEL SECURITY;
 
 -- ========================================================
