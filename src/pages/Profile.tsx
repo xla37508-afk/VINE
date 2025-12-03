@@ -272,8 +272,8 @@ export default function Profile() {
 
    const fileName = `${user.id}-cv-${Date.now()}.pdf`;
    // ĐÚNG: SỬ DỤNG FULL PATH CHO STORAGE (documents/user-id-...)
-   const filePath = `documents/${fileName}`; 
-      
+   const filePath = `documents/${fileName}`;
+
       // 1. Upload file
       const { error: uploadError } = await supabase.storage
         .from("documents")
@@ -284,13 +284,13 @@ export default function Profile() {
       // 2. Cập nhật profile (lưu FILE PATH ĐẦY ĐỦ vào DB)
       const { error: updateError } = await supabase
         .from("profiles")
-        .update({ cv_url: filePath }) 
+        .update({ cv_url: filePath })
         .eq("id", user.id);
 
       if (updateError) throw updateError;
 
       toast.success("CV uploaded successfully");
-      
+
       // Tối ưu hóa: Cập nhật state cục bộ và tạo Signed URL mới
       setProfile(prevProfile => {
           if (!prevProfile) return null;
@@ -302,10 +302,51 @@ export default function Profile() {
       // Tạo signed URL mới ngay sau khi upload
       const newSignedUrl = await getSignedUrl(filePath);
       setCvSignedUrl(newSignedUrl);
-      
+
     } catch (error) {
       console.error("Error uploading CV:", error);
       toast.error("Failed to upload CV");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleCVDelete = async () => {
+    try {
+      if (!profile?.cv_url) return;
+
+      setUploading(true);
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      // Delete from storage
+      const { error: deleteError } = await supabase.storage
+        .from("documents")
+        .remove([profile.cv_url]);
+
+      if (deleteError) throw deleteError;
+
+      // Update profile to remove cv_url
+      const { error: updateError } = await supabase
+        .from("profiles")
+        .update({ cv_url: null })
+        .eq("id", user.id);
+
+      if (updateError) throw updateError;
+
+      toast.success("CV deleted successfully");
+
+      setProfile(prevProfile => {
+        if (!prevProfile) return null;
+        return {
+          ...prevProfile,
+          cv_url: null,
+        };
+      });
+      setCvSignedUrl(null);
+    } catch (error) {
+      console.error("Error deleting CV:", error);
+      toast.error("Failed to delete CV");
     } finally {
       setUploading(false);
     }
